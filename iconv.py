@@ -48,6 +48,7 @@ class FIconv(Iconv):
 			self.from_encoding = 'utf-8'
 		else:
 			self.from_encoding = self._detect_file_encoding(self.from_file)
+                
 		print("Before iconv encoding:"+self.from_encoding+"")
 		self._codecs_iconv_binary()
 		print("After iconv encoding:"+self._detect_file_encoding(self.to_file))
@@ -87,14 +88,14 @@ class FIconv(Iconv):
 		line_list = []
 		if b:
 			with open(self.from_file,'rb') as file:
-				#print(file.read())
+				#print(file.read()) #this will flush all data of the file
 				for line in file:
 					#print(line.decode(self.from_encoding))
 					line_list.append(line)
 
 			with open(self.to_file,'wb') as file:
 				for i in range(len(line_list)):
-					str_line = line_list[i].decode('gbk').encode(self.to_encoding)
+					str_line = line_list[i].decode('gbk').encode(self.to_encoding)#.decode(self.from_encoding).encode(self.from_encoding)
 					file.write(str_line)#.encode('utf-8'))	
 		pass
 
@@ -107,7 +108,8 @@ def main():
 	print('chardet')
 	#chardet_func()
 	#iconv = Iconv()
-	ficonv = FIconv('utf-8','ansi-to-utf8.txt')
+	ficonv = FIconv('utf-8','french-mscs.txt')
+	#ficonv = FIconv('utf-8','ansi-to-utf8.txt')
 	#ficonv = FIconv('utf-8','utf8-to-ansi.txt')
 	#ficonv = FIconv('ascii','utf8-to-ansi-test.txt')
 	pass
