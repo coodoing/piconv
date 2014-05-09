@@ -1,9 +1,9 @@
 piconv
 ======
 
-auto detect the file encoding format and iconv it to specified encoding format
+Use `chardet` to auto detect file encoding format and iconv it to specified encoding format
 
-
+The `piconv` includes following functions:
 > * 1、正则匹配，获取所有匹配的文件列表；
 > * 2、快速遍历多层级目录，获取文件列表；
 > * 3、文件ENCODE自动识别；iconv需要手动去指定from to的encoding模式
