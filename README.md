@@ -2,7 +2,7 @@ piconv
 ======
 
 ## Intro
-Use `chardet`[^code] to auto detect file encoding format and iconv it to input encoding format even you don't know what the encoding format of the input file. You can also get `uchardet`[^code] for more details.
+Use `chardet` to auto detect file encoding format and iconv it to input encoding format even you don't know what the encoding format of the input file. You can also get `uchardet` for more details.
 
 
 ## Why piconv?
@@ -32,6 +32,7 @@ diconv.codecs_iconv_iterator()
 
 * `simple iconv command`
 
+
 * `complicated iconv command to implement dirs convert`
 
 
@@ -41,12 +42,12 @@ diconv.codecs_iconv_iterator()
 ## Functions & Advantages
 The `piconv` includes following functions and advantages:
 
-> * 1¡¢ÕýÔòÆ¥Åä£¬»ñÈ¡ËùÓÐÆ¥ÅäµÄÎÄ¼þÁÐ±í£»
-> * 2¡¢¿ìËÙ±éÀú¶à²ã¼¶Ä¿Â¼£¬»ñÈ¡ÎÄ¼þÁÐ±í£»£¨DFS, BFS£©
-> * 3¡¢ÎÄ¼þENCODE×Ô¶¯Ê¶±ð£»iconvÐèÒªÊÖ¶¯È¥Ö¸¶¨from toµÄencodingÄ£Ê½£»
-> * 4¡¢Ç¿´óµÄÒì³£´¦Àí£»±àÂëÎÊÌâµÄ½â¾ö
-> * 5¡¢¼ò»¯iconv¶ÔÄ¿Â¼µÄ´¦Àí£¬·½±ãµÄµ÷ÓÃ½Ó¿Ú£»£¨Ö¸¶¨srcÄ¿Â¼£¬È±Ê¡µÄdestÄ¿Â¼£¬Ö¸¶¨from-to coding£¬Ä¬ÈÏµÄÆ¥Åä·½Ê½£©
-> * 6¡¢³¤Ä¿Â¼½øÐÐÑ¹Ëõ
+> * 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ä£¬ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
+> * 2ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã¼¶Ä¿Â¼ï¿½ï¿½ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½DFS, BFSï¿½ï¿½
+> * 3ï¿½ï¿½ï¿½Ä¼ï¿½ENCODEï¿½Ô¶ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½iconvï¿½ï¿½Òªï¿½Ö¶ï¿½È¥Ö¸ï¿½ï¿½from toï¿½ï¿½encodingÄ£Ê½ï¿½ï¿½
+> * 4ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½
+> * 5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iconvï¿½ï¿½Ä¿Â¼ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½Ã½Ó¿Ú£ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½srcÄ¿Â¼ï¿½ï¿½È±Ê¡ï¿½ï¿½destÄ¿Â¼ï¿½ï¿½Ö¸ï¿½ï¿½from-to codingï¿½ï¿½Ä¬ï¿½Ïµï¿½Æ¥ï¿½ä·½Ê½ï¿½ï¿½
+> * 6ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ï¿½
 
 [^code]: chardet
 [^code]: http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/
