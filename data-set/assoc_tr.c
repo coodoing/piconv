@@ -1,7 +1,7 @@
 
 int assoc_insert(item *it, const uint32_t hv) {
     unsigned int oldbucket;
-    // ͷ�巨
+    // 头插法
     if (expanding &&
         (oldbucket = (hv & hashmask(hashpower - 1))) >= expand_bucket)
     {
