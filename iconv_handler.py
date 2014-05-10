@@ -42,7 +42,10 @@ class FIconv(Iconv):
 		if to_file == '':
 			dirpath = os.path.dirname(from_file)
 			filename = os.path.basename(from_file)
-			self.to_file = dirpath+'\\iconv_'+filename
+			if dirpath == "":
+				self.to_file = 'iconv_'+filename
+			else:
+				self.to_file = dirpath+'\\iconv_'+filename
 		else:
 			self.to_file = to_file
 		self.to_encoding = to_encoding
@@ -111,8 +114,8 @@ class FIconv(Iconv):
 						"""
 							there are three ways to test the result
 						"""
-						decoding = locale.getpreferredencoding()
-						#decoding = 'utf-8' 
+						decoding = locale.getpreferredencoding() #utf8 file -> utf8 file
+						decoding = 'utf-8' #utf8 file -> gbk file
 						#decoding = self.from_encoding #use the unconfidence encoding format to decode, and will generate garbled characters
 						str_line = line_list[i].decode(decoding).encode(self.to_encoding)
 					except:
