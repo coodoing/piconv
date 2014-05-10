@@ -10,7 +10,18 @@ Use `chardet` to auto detect file encoding format and iconv it to the input enco
 As you know, Linux provide iconv command to convert between different character encodings, but the from-encoding and to-encoding must be provided......
 
 
-Comparision with `iconv / piconv(perl)` command through the given file **data-set/assoc.c** which contains chinese characters 'tong' and is utf-8 encoding format.Use `file FILENAME` command to get the file's format. The source content:
+When encounting some garbled characters encoding problem, you want to convert it to the correct format, linux provides `iconv` to do it. ***If you know the file's encoding, just ignore what I descibe  below***. But when you don't get the right file encoding or you don't even know the file's encoding, you can't convert the file correctly. The encoding format of **data-set/chinese-ansi.txt** is *GBK*, but you will get *ISO-8859* when use the `file` command, then the format will be wrong. 
+```
+file data-set/chinese-ansi.txt #ISO-8859
+iconv -f iso-8859-1 -t utf-8 data-set/chinese-ansi.txt > chinese-ansi.txt # garbled character-乱码
+
+Or
+
+iconv -f GBK -t utf-8 data-set/chinese-ansi.txt > chinese-ansi.txt # correctly
+
+```
+
+Comparision with `iconv / piconv(perl)` command through the given file **data-set/assoc.c** which contains chinese characters '头插法' and is *utf-8* encoding format.Use `file FILENAME` command to get the file's format. The source content:
 ```
     // 头插法
     return 1;
@@ -19,26 +30,19 @@ Comparision with `iconv / piconv(perl)` command through the given file **data-se
 
 * **convert utf-8 to gbk**
   command:
-
- ```
- iconv -f utf-8 -t gbk data-set/assoc.c > utf8-gbk.c
+```
+iconv -f utf-8 -t gbk data-set/assoc.c > utf8-gbk.c
  
- piconv -f utf-8 -t gbk data-set/assoc.c > utf8-gbk-p.c
- ```
+piconv -f utf-8 -t gbk data-set/assoc.c > utf8-gbk-p.c
+```
   result:
-  ```   
+```   
   // í·2?·¨
      return 1;
   }
-  ```
+```
 
 * **convert gbk to utf-8** 
-When you can't get the right file encoding format, you can't convert the file correctly. The encoding format of **data-set/chinese-ansi.txt** is GBK, but you will get ISO-8859 when use the `file` command.
-```
-file data-set/chinese-ansi.txt 
-
-iconv -f iso-8859-1 -t utf-8 data-set/chinese-ansi.txt > chinese-ansi.txt
-```
 Now we take a look at the result when convert gbk to utf-8 through `iconv`.
 ```
  iconv -f gbk -t utf-8 data-set/assoc.c > gbk-utf8.c
@@ -75,7 +79,7 @@ result
 }
 
 ```
-You can also test other convertion cases.
+You can also test other convertion cases. 
 
 
 ## How to use
