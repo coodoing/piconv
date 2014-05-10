@@ -1,7 +1,7 @@
 #-*-coding=utf-8-*-
 
 import sys
-import icov_handler.py
+import iconv_handler.py
 
 class PIconvHandlerTool(object):
     """ 

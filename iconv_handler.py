@@ -108,9 +108,13 @@ class FIconv(Iconv):
 			with open(self.to_file,'wb') as file:
 				for i in range(len(line_list)):
 					try:
-						gbk = locale.getpreferredencoding()
-						gbk = self.from_encoding
-						str_line = line_list[i].decode(gbk).encode(self.to_encoding)
+						"""
+							there are three ways to test the result
+						"""
+						decoding = locale.getpreferredencoding()
+						#decoding = 'utf-8' 
+						#decoding = self.from_encoding #use the unconfidence encoding format to decode, and will generate garbled characters
+						str_line = line_list[i].decode(decoding).encode(self.to_encoding)
 					except:
 						str_line = line_list[i]#.decode(self.from_encoding).encode(self.from_encoding)
 					file.write(str_line)			
@@ -129,16 +133,13 @@ class DIconv(Iconv):
 		#filepath = os.path.dirname(filepath)
 		#filename = os.path.basename(filepath)	
 
-		#list insert and remove
 		#filepath = filepath.split('\\')[0:]		
 		#print(filepath)#type(filepath)
 		#filepath.insert(0,self.new_root)#print(filepath)
 		#new_path = '\\'.join(filepath)	
 
 		new_path = filepath.replace(self.root,self.new_root)
-		#print(new_path)
 		return new_path
-
 			
 	def codecs_iconv(self,filepath):		
 		print('source filepath:' + filepath)
@@ -164,24 +165,26 @@ class DIconv(Iconv):
 		pass
 	pass
 
-def main():	
+def FileTest():
 	print(ignore_encode_error)	
-	regex = re.search(r'new\\test','new\\test\\123\\456\\new\\test')
+	regex = re.search(r'a\\b','a\\b\\123\\456\\a\\b')
 	print(regex.group())
-	src = 'new\\test\\123\\456\\new\\test'
-	sub = 'new\\test'
-	idx = src.index(sub)
-	print(src.replace(sub,sub+'_conv'))
 
 	print('########################')
 	print('File chardet ')
 	ficonv = FIconv('data-set\\french-ansi.txt','utf-8')
 	ficonv = FIconv('data-set\\japanese-ansi.txt','utf-8')
 	ficonv = FIconv('data-set\\chinese-ansi.txt','utf-8')
-	##ficonv = FIconv('data-set\\chinese-ansi','ascii',)
+	ficonv = FIconv('data-set\\items.c','gbk',)
+	pass
+
+
+def main():	
+	FileTest()
 	print('########################')
 	print('Dir chardet')	
 	#diconv = DIconv('D:\\book\\decode-memcached-master\\memcached-1.4.15','utf-8')#DIconv('D:\\book\\decode-memcached-master\\memcached-1.4.15')#
+	#diconv = DIconv('D:\\decode-memcached-master\\memcached-1.4.15','gbk')
 	#diconv.codecs_iconv_iterator()
 	pass
 
