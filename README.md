@@ -29,7 +29,7 @@ Comparision with `iconv / piconv(perl)` command through the given file **data-se
 ```
 
 * **convert utf-8 to gbk**
-  command:
+command:
 ```
 iconv -f utf-8 -t gbk data-set/assoc.c > utf8-gbk.c
  
@@ -107,6 +107,15 @@ diconv.codecs_iconv_iterator()
 
 
 * `complicated iconv command to implement dirs convert`
+
+use the `exec`  or `bash` to iterator directories
+```
+find iconv-test/ -name gbk-gbk.c -exec iconv -c -f gbk 
+-t utf-8 "{}" -o "{}" \;
+
+find iconv-test/ -name gbk-gbk.c -type f | (while read file; do  iconv -c -f gbk -t utf-8 "$file" >"${file%.txt}-utf8.txt"; done);
+
+```
 
 
 ## Suports

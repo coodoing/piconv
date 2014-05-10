@@ -181,14 +181,16 @@ def FileTest():
 	ficonv = FIconv('data-set\\items.c','gbk',)
 	pass
 
+def DirTest():
+	print('########################')
+	print('Dir chardet')	
+	#diconv = DIconv('D:\\code\\memcache\\memcached-1.4.15','utf-8')#DIconv('D:\\code\\memcache\\memcached-1.4.15')#
+	#diconv = DIconv('D:\\memcache\\memcached-1.4.15','gbk')
+	#diconv.codecs_iconv_iterator()
 
 def main():	
 	FileTest()
-	print('########################')
-	print('Dir chardet')	
-	#diconv = DIconv('D:\\book\\decode-memcached-master\\memcached-1.4.15','utf-8')#DIconv('D:\\book\\decode-memcached-master\\memcached-1.4.15')#
-	#diconv = DIconv('D:\\decode-memcached-master\\memcached-1.4.15','gbk')
-	#diconv.codecs_iconv_iterator()
+	DirTest()
 	pass
 
 if __name__ == '__main__':
