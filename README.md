@@ -14,9 +14,12 @@ python piconv.py filename/dirname to_encoding
 
 ## Why piconv?
 
-When encounting some garbled characters encoding problem, you want to convert it to the correct format, linux provides `iconv` command to convert file beetween different character encodings. But the from-encoding and to-encoding must be specified and it may still generate some garbled characters like **'?? ┴，2?，：'**. 
+When encounting some garbled characters encoding problem, you must want to convert it to the correct encoding format, linux provides `iconv` command to convert file beetween different character encodings. But the from-encoding and to-encoding must be specified and it may still generate some garbled characters like **'?? ┴，2?，：'**. 
+
 ***If you know the file's correct encoding(includes from and to encodings), just ignore what I descibe  below***. But when you don't get the file's right encoding or you don't even know the file's encoding, you can't convert the file correctly. 
-I develop `piconv` tool to simplify this convertion process. You just need to input the file/dir and to-encodings to get the right convertion. For more usage detail, just checkout the **How to use `piconv` section**.
+
+I develop `piconv` tool to simplify this convertion process of many files in the input directory. When you use the `piconv ` tool, you just need to input the file/dir and to-encoding to realize the right convertion. For more usage detail, just checkout the **How to use `piconv` section**.
+
 At first, I will show you the garbled character when use `iconv` command. Then there will be a comprision beetween the usage of `iconv` and `piconv`.
 
 ### `iconv` garbled character
@@ -133,6 +136,7 @@ The `piconv` includes following functions and advantages:
 **todo**
 > * regex match convertion
 > * compress the dirname and improve the iteration speed
+
 
 ## References
 * [chardet](https://github.com/chardet/chardet)
