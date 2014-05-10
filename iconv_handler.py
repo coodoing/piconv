@@ -51,9 +51,9 @@ class FIconv(Iconv):
 		else:
 			self.from_encoding = self.detect_file_encoding(self.from_file)
                 
-		print("Before iconv encoding:"+self.from_encoding+"")
+		print("  Before iconv encoding:"+self.from_encoding+"")
 		self.codecs_iconv_binary()
-		print("After iconv encoding:"+self.detect_file_encoding(self.to_file))
+		print("  After iconv encoding:"+self.detect_file_encoding(self.to_file))
 	
 	def detect_file_encoding(self,filename):
 		"""
@@ -86,7 +86,7 @@ class FIconv(Iconv):
 		b = os.path.isfile(self.from_file)
 		line_list = []
 		if b:
-			with open(self.from_file,'r',encoding = 'gbk') as file:
+			with open(self.from_file,'r',encoding = locale.getpreferredencoding()) as file:
 				for line in file:
 					line_list.append(line)
 
@@ -108,7 +108,9 @@ class FIconv(Iconv):
 			with open(self.to_file,'wb') as file:
 				for i in range(len(line_list)):
 					try:
-						str_line = line_list[i].decode(self.from_encoding).encode(self.to_encoding)
+						gbk = locale.getpreferredencoding()
+						gbk = self.from_encoding
+						str_line = line_list[i].decode(gbk).encode(self.to_encoding)
 					except:
 						str_line = line_list[i]#.decode(self.from_encoding).encode(self.from_encoding)
 					file.write(str_line)			
@@ -173,14 +175,14 @@ def main():
 
 	print('########################')
 	print('File chardet ')
-	#ficonv = FIconv('french-mscs.txt','utf-8')
-	#ficonv = FIconv('ansi-to-utf8.txt','utf-8')
-	#ficonv = FIconv('utf8-to-ansi.txt','utf-8')
-	##ficonv = FIconv('utf8-to-ansi.txt','ascii',)
+	ficonv = FIconv('data-set\\french-ansi.txt','utf-8')
+	ficonv = FIconv('data-set\\japanese-ansi.txt','utf-8')
+	ficonv = FIconv('data-set\\chinese-ansi.txt','utf-8')
+	##ficonv = FIconv('data-set\\chinese-ansi','ascii',)
 	print('########################')
 	print('Dir chardet')	
-	diconv = DIconv('D:\\book\\decode-memcached-master\\memcached-1.4.15','utf-8')#DIconv('D:\\book\\decode-memcached-master\\memcached-1.4.15')#
-	diconv.codecs_iconv_iterator()
+	#diconv = DIconv('D:\\book\\decode-memcached-master\\memcached-1.4.15','utf-8')#DIconv('D:\\book\\decode-memcached-master\\memcached-1.4.15')#
+	#diconv.codecs_iconv_iterator()
 	pass
 
 if __name__ == '__main__':
