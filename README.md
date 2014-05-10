@@ -1,12 +1,81 @@
 piconv
 ======
 
-## Intro
-Use `chardet` to auto detect file encoding format and iconv it to input encoding format even you don't know what the encoding format of the input file. You can also get `uchardet` for more details.
+## Desciption
+Use `chardet` to auto detect file encoding format and iconv it to the input encoding format even you don't know what the encoding format of the input files. You can also get more details from `uchardet`. 
+
 
 
 ## Why piconv?
 As you know, Linux provide iconv command to convert between different character encodings, but the from-encoding and to-encoding must be provided......
+
+
+Comparision with `iconv / piconv(perl)` command through the given file **data-set/assoc.c** which contains chinese characters 'tong' and is utf-8 encoding format.Use `file FILENAME` command to get the file's format. The source content:
+```
+    // Í·²å·¨
+    return 1;
+}
+```
+
+* **convert utf-8 to gbk**
+  command:
+
+ ```
+ iconv -f utf-8 -t gbk data-set/assoc.c > utf8-gbk.c
+ 
+ piconv -f utf-8 -t gbk data-set/assoc.c > utf8-gbk-p.c
+ ```
+  result:
+  ```   
+  // ¨ª¡¤2?¡¤¡§
+     return 1;
+  }
+  ```
+
+* **convert gbk to utf-8** 
+When you can't get the right file encoding format, you can't convert the file correctly. The encoding format of **data-set/chinese-ansi.txt** is GBK, but you will get ISO-8859 when use the `file` command.
+```
+file data-set/chinese-ansi.txt 
+
+iconv -f iso-8859-1 -t utf-8 data-set/chinese-ansi.txt > chinese-ansi.txt
+```
+Now we take a look at the result when convert gbk to utf-8 through `iconv`.
+```
+ iconv -f gbk -t utf-8 data-set/assoc.c > gbk-utf8.c
+ #iconv: illegal input sequence at position 16
+```
+Result:(terminated by the unicode error)
+```
+    // å¤´æ’æ³
+```
+Then we use **`iconv -c`** option to omit invalid characters from output.
+```
+iconv -c -s -f gbk -t utf-8 data-set/assoc.c > gbk-utf8-c.c
+```
+result:
+```
+    // å¤´æ’æ³
+    return 1;
+}
+```
+* **utf8-utf8 & gbk-gbk**
+```
+iconv -c -s -f utf-8 -t utf-8 data-set/assoc.c > utf8-utf8.c
+
+iconv -c -s -f gbk -t gbk data-set/assoc.c > gbk-gbk.c
+```
+result
+```
+     // Í·²å·¨
+    return 1;
+}
+  
+    // ?¡è¡ä?<8f><92>?3
+    return 1;
+}
+
+```
+You can also test other convertion cases.
 
 
 ## How to use
@@ -41,6 +110,7 @@ diconv.codecs_iconv_iterator()
 
 ## Functions & Advantages
 The `piconv` includes following functions and advantages:
+
 
 
 
