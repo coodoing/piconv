@@ -1,7 +1,7 @@
 #-*-coding=utf-8-*-
 
 import sys,os
-import iconv_handler
+import piconv_handler
 
 class PIconvHandlerTool(object):
     """ 
@@ -55,12 +55,12 @@ class PIconvHandlerTool(object):
             print('Start to iconv files......')
 
             if self.is_file:
-                from iconv_handler import FIconv
+                from piconv_handler import FIconv
                 print('[file_name] = `%s`, [encoding] = `%s`' % (self.name,self.encoding))                
                 ficonv = FIconv(self.name,self.encoding)
                 sys.exit()
             if self.is_dir:
-                from iconv_handler import DIconv                
+                from piconv_handler import DIconv                
                 print('[dir_path] = `%s`, [encoding] = `%s`' % (self.name,self.encoding))
                 diconv = DIconv(self.name,self.encoding)
                 diconv.codecs_iconv_iterator()
